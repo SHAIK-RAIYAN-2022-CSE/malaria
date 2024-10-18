@@ -53,7 +53,8 @@ malaria_diagnosis = ''
 # creating a button for Prediction
 
 if st.button('Malaria Test Button'):
-    malaria_prediction = malaria.predict([[]])
+    malaria_prediction = malaria.predict([[Temperature_Above_Avg,High_Rainfall,High_Humidity,High_Population_Density,Malaria_Outbreak,Insecticide_Use,Health_Facilities_Adequate,Vaccination_Rate_High,Mosquito_Net_Coverage_High
+]])
     
     if (malaria_prediction[0] == 1):
       malaria_diagnosis = 'The person is Effected with Malaria'
