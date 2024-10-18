@@ -3,7 +3,7 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Load the saved model
-Malaria_Project = pickle.load(open('malaria_model1.sav', 'rb'))
+Malaria_Project = pickle.load(open('malaria_model10.sav', 'rb'))
 
 # Page title with styling
 st.markdown(
