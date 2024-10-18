@@ -11,37 +11,30 @@ st.title('Malaria Prediction using ML')
 # Input data
 col1, col2, col3, col4, col5 = st.columns(5)
 
+
+
 with col1:
-    region = st.text_input('Region')
-
-with col2:
-    year = st.text_input('Year')
-
-with col3:
-    month = st.text_input('Month')
-
-with col4:
     temperature_above_avg = st.text_input('Temperature Above Avg')
 
-with col5:
+with col2:
     high_rainfall = st.text_input('High Rainfall')
 
-with col1:
+with col3:
     high_humidity = st.text_input('High Humidity')
 
-with col2:
+with col4:
     high_population_density = st.text_input('High Population Density')
 
-with col3:
+with col5:
     malaria_outbreak = st.text_input('Malaria Outbreak')
 
-with col4:
+with col1:
     health_facilities_adequate = st.text_input('Health Facilities Adequate')
 
-with col5:
+with col2:
     vaccination_rate_high = st.text_input('Vaccination Rate High')
 
-with col1:
+with col3:
     mosquito_net_coverage_high = st.text_input('Mosquito Net Coverage High')
 
 # Prediction result
