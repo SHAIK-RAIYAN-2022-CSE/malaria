@@ -9,7 +9,7 @@ malaria = pickle.load(open('malaria_model.sav', 'rb'))
 page_bg_img = '''
 <style>
     body {
-        background-image: url("https://images.wallpapersden.com/image/download/mount-fuji-reflection_67098_3840x2160.jpg");
+        background-image: url("https://github.com/SHAIK-RAIYAN-2022-CSE/malaria/blob/main/pexels-slendyalex-3941855.jpg?raw=true");
         background-size: cover;
         color: white;
     }
