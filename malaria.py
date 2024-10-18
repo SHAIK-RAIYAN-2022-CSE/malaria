@@ -17,9 +17,9 @@ page_bg_img = '''
     [data-testid="stHeader"] {
         background: rgba(0, 0, 0, 0); /* Transparent header */
     }
-    .stTextInput > div > input {
-        background-color: white;
-        color: black;
+    input {
+        background-color: white !important;
+        color: black !important;
         border-radius: 10px;
         border: 1px solid #ccc;
         padding: 8px;
