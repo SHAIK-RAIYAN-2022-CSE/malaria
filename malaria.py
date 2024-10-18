@@ -17,12 +17,22 @@ page_bg_img = '''
     [data-testid="stHeader"] {
         background: rgba(0, 0, 0, 0); /* Transparent header */
     }
+    .block-container {
+        max-width: 800px;
+        margin: 50px auto; /* Center the content */
+        padding: 20px;
+        border: 2px solid #ccc; /* Full border */
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        backdrop-filter: blur(10px); /* Background blur effect */
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6); /* Box shadow for depth */
+    }
     input {
         background-color: white !important;
         color: black !important;
         border-radius: 10px;
         border: 1px solid #ccc;
-        padding: 8px;
+        padding: 10px;
         font-size: 16px;
     }
     .stButton>button {
@@ -41,20 +51,17 @@ page_bg_img = '''
     h1, h2, h3, h4, h5, h6, p {
         color: white !important;
     }
-    .block-container {
-        padding-top: 2rem;
-    }
 </style>
 '''
 st.markdown(page_bg_img, unsafe_allow_html=True)
 
 # Page title
-st.title('🌿 Malaria Prediction using Machine Learning')
+st.markdown("<h1 style='text-align: center;'>🌿 Malaria Prediction using Machine Learning</h1>", unsafe_allow_html=True)
 
-# Input section
+# Input section with a subheader
 st.subheader("Enter Health and Environmental Factors")
 
-# Create three rows for alignment
+# Align inputs in three rows for better structure
 with st.container():
     col1, col2, col3, col4 = st.columns(4)
 
