@@ -17,6 +17,14 @@ page_bg_img = '''
     [data-testid="stHeader"] {
         background: rgba(0, 0, 0, 0); /* Transparent header */
     }
+    .stTextInput > div > input {
+        background-color: white;
+        color: black;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 8px;
+        font-size: 16px;
+    }
     .stButton>button {
         background-color: #4CAF50;
         color: white;
@@ -29,6 +37,9 @@ page_bg_img = '''
         background-color: white;
         color: #4CAF50;
         border: 2px solid #4CAF50;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+        color: white !important;
     }
 </style>
 '''
