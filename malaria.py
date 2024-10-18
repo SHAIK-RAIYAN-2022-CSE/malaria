@@ -3,19 +3,19 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Load the saved model
-malaria = pickle.load(open('malaria_model10.sav', 'rb'))
+malaria = pickle.load(open('malaria_model.sav', 'rb'))
 
-# Custom CSS to change the background and apply styling
+# Use the raw GitHub link for the background image
 page_bg_img = '''
 <style>
     [data-testid="stAppViewContainer"] {
-        background-image: url("https://www.publicdomainpictures.net/pictures/30000/velka/plain-light-blue-background.jpg");
+        background-image: url("https://raw.githubusercontent.com/your-username/your-repo-name/main/assets/background.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
     }
     [data-testid="stHeader"] {
-        background: rgba(0, 0, 0, 0);  /* Make header transparent */
+        background: rgba(0, 0, 0, 0); /* Transparent header */
     }
     .stButton>button {
         background-color: #4CAF50;
