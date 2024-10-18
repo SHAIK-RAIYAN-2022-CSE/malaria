@@ -41,6 +41,9 @@ page_bg_img = '''
     h1, h2, h3, h4, h5, h6, p {
         color: white !important;
     }
+    .block-container {
+        padding-top: 2rem;
+    }
 </style>
 '''
 st.markdown(page_bg_img, unsafe_allow_html=True)
@@ -50,31 +53,26 @@ st.title('🌿 Malaria Prediction using Machine Learning')
 
 # Input section
 st.subheader("Enter Health and Environmental Factors")
-col1, col2, col3, col4, col5 = st.columns(5)
 
-with col1:
-    temperature_above_avg = st.text_input('🌡 Temperature Above Avg')
+# Create three rows for alignment
+with st.container():
+    col1, col2, col3, col4 = st.columns(4)
 
-with col2:
-    high_rainfall = st.text_input('🌧 High Rainfall')
+    with col1:
+        temperature_above_avg = st.text_input('🌡 Temperature Above Avg')
+        health_facilities_adequate = st.text_input('🏥 Health Facilities Adequate')
 
-with col3:
-    high_humidity = st.text_input('💧 High Humidity')
+    with col2:
+        high_rainfall = st.text_input('🌧 High Rainfall')
+        vaccination_rate_high = st.text_input('💉 Vaccination Rate High')
 
-with col4:
-    high_population_density = st.text_input('🏙 Population Density')
+    with col3:
+        high_humidity = st.text_input('💧 High Humidity')
+        mosquito_net_coverage_high = st.text_input('🛏 Mosquito Net Coverage High')
 
-with col5:
-    malaria_outbreak = st.text_input('🦟 Malaria Outbreak')
-
-with col1:
-    health_facilities_adequate = st.text_input('🏥 Health Facilities Adequate')
-
-with col2:
-    vaccination_rate_high = st.text_input('💉 Vaccination Rate High')
-
-with col3:
-    mosquito_net_coverage_high = st.text_input('🛏 Mosquito Net Coverage High')
+    with col4:
+        high_population_density = st.text_input('🏙 Population Density')
+        malaria_outbreak = st.text_input('🦟 Malaria Outbreak')
 
 # Prediction result
 malaria_diagnosis = ''
