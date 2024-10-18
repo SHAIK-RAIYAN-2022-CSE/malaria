@@ -3,81 +3,98 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Load the saved model
-Malaria_Project = pickle.load(open('malaria_model10.sav', 'rb'))
+malaria = pickle.load(open('malaria_model10.sav', 'rb'))
 
-# Page title with styling
-st.markdown(
-    """
-    <style>
-        .title {
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            color: white;
-        }
-        .content {
-            border: 1px solid rgba(255, 255, 255, 0.5);
-            border-radius: 10px;
-            backdrop-filter: blur(10px);
-            padding: 20px;
-            margin: 20px auto;
-            width: 80%;
-        }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# Use the raw GitHub link for the background image
+page_bg_img = '''
+<style>
+    [data-testid="stAppViewContainer"] {
+        background-image: url("https://github.com/SHAIK-RAIYAN-2022-CSE/malaria/blob/main/Images-free-abstract-minimalist-wallpaper-HD.jpg?raw=true");
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    [data-testid="stHeader"] {
+        background: rgba(0, 0, 0, 0); /* Transparent header */
+    }
+    .block-container {
+        max-width: 800px;
+        margin: 50px auto; /* Center the content */
+        padding: 20px;
+        border: 2px solid #ccc; /* Full border */
+        border-radius: 15px;
+        background: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        backdrop-filter: blur(10px); /* Background blur effect */
+        box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.6); /* Box shadow for depth */
+    }
+    input {
+        background-color: white !important;
+        color: black !important;
+        border-radius: 10px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        font-size: 16px;
+    }
+    .stButton>button {
+        background-color: #4CAF50;
+        color: white;
+        font-size: 16px;
+        padding: 10px 24px;
+        border-radius: 8px;
+        transition: 0.3s;
+    }
+    .stButton>button:hover {
+        background-color: white;
+        color: #4CAF50;
+        border: 2px solid #4CAF50;
+    }
+    h1, h2, h3, h4, h5, h6, p {
+        color: white !important;
+    }
+</style>
+'''
+st.markdown(page_bg_img, unsafe_allow_html=True)
 
-st.markdown('<div class="title">Malaria Prediction using Machine Learning</div>', unsafe_allow_html=True)
+# Page title
+st.markdown("<h1 style='text-align: center;'>🌿 Malaria Prediction using Machine Learning</h1>", unsafe_allow_html=True)
 
-# Container for input data
+# Input section with a subheader
+st.subheader("Enter Health and Environmental Factors")
+
+# Align inputs in three rows for better structure
 with st.container():
-    st.markdown('<div class="content">', unsafe_allow_html=True)
-
-    col1, col2, col3, col4, col5 = st.columns(5)
+    col1, col2, col3, col4 = st.columns(4)
 
     with col1:
-        Temperature_Above_Avg = st.text_input('Temperature Above Avg')
-        
+        temperature_above_avg = st.text_input('🌡 Temperature Above Avg')
+        health_facilities_adequate = st.text_input('🏥 Health Facilities Adequate')
+
     with col2:
-        High_Rainfall = st.text_input('High Rainfall')
+        high_rainfall = st.text_input('🌧 High Rainfall')
+        vaccination_rate_high = st.text_input('💉 Vaccination Rate High')
 
     with col3:
-        High_Humidity = st.text_input('High Humidity')
-        
+        high_humidity = st.text_input('💧 High Humidity')
+        mosquito_net_coverage_high = st.text_input('🛏 Mosquito Net Coverage High')
+
     with col4:
-        High_Population_Density = st.text_input('High Population Density')
-        
-    with col5:
-        Malaria_Outbreak = st.text_input('Malaria Outbreak')
+        high_population_density = st.text_input('🏙 Population Density')
+        malaria_outbreak = st.text_input('🦟 Malaria Outbreak')
 
-    with col1:
-        Insecticide_Use = st.text_input('Insecticide Use')
-        
-    with col2:
-        Health_Facilities_Adequate = st.text_input('Health Facilities Adequate')
+# Prediction result
+malaria_diagnosis = ''
 
-    with col3:
-        Vaccination_Rate_High = st.text_input('Vaccination Rate High')
-        
-    with col4:
-        Mosquito_Net_Coverage_High = st.text_input('Mosquito Net Coverage High')
+# Prediction button
+if st.button('🔍 Predict Malaria'):
+    malaria_prediction = malaria.predict([[temperature_above_avg, high_rainfall, high_humidity,
+                                           high_population_density, malaria_outbreak,
+                                           health_facilities_adequate, vaccination_rate_high,
+                                           mosquito_net_coverage_high]])
 
-    # Prediction
-    Malaria_diagnosis = ''
+    if malaria_prediction[0] == 1:
+        malaria_diagnosis = 'The person is affected with Malaria 😷'
+    else:
+        malaria_diagnosis = 'The person is NOT affected with Malaria 😊'
 
-    # Prediction button
-    if st.button('🔍 Malaria Disease Test Button'):
-        try:
-            Malaria_disease_prediction = Malaria_Project.predict([[Temperature_Above_Avg, High_Rainfall, High_Humidity, High_Population_Density, Malaria_Outbreak, Insecticide_Use, Health_Facilities_Adequate, Vaccination_Rate_High, Mosquito_Net_Coverage_High]])
-        except ValueError as e:
-            st.error(f"Prediction error: {str(e)}")
-
-        if Malaria_disease_prediction[0] == 1:
-            Malaria_diagnosis = 'The person is affected with Malaria 😷'
-        else:
-            Malaria_diagnosis = 'The person is NOT affected with Malaria 😊'
-
-    st.success(Malaria_diagnosis)
-
-    st.markdown('</div>', unsafe_allow_html=True)
+# Display result
+st.success(malaria_diagnosis)
