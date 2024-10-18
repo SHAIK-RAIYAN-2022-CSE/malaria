@@ -9,7 +9,7 @@ malaria = pickle.load(open('malaria_model10.sav', 'rb'))
 page_bg_img = '''
 <style>
     [data-testid="stAppViewContainer"] {
-        background-image: url("https://raw.githubusercontent.com/your-username/your-repo-name/main/assets/background.jpg");
+        background-image: url("https://th.bing.com/th/id/OIP.TVtx79z6Rt6kX0ei9yRdJwHaEJ?rs=1&pid=ImgDetMain");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
