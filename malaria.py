@@ -3,32 +3,31 @@ import streamlit as st
 from streamlit_option_menu import option_menu
 
 # Load the saved model
-malaria = pickle.load(open('malaria_model10.sav', 'rb'))
+malaria = pickle.load(open('malaria_model.sav', 'rb'))
 
-# Apply custom CSS for background and styling
+# Custom CSS to change the background and apply styling
 page_bg_img = '''
 <style>
-    body {
-        background-image: url("pexels-slendyalex-3941855.jpg");
+    [data-testid="stAppViewContainer"] {
+        background-image: url("https://www.publicdomainpictures.net/pictures/30000/velka/plain-light-blue-background.jpg");
         background-size: cover;
-        color: white;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+    [data-testid="stHeader"] {
+        background: rgba(0, 0, 0, 0);  /* Make header transparent */
     }
     .stButton>button {
         background-color: #4CAF50;
         color: white;
-        border: none;
-        padding: 10px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
         font-size: 16px;
-        margin: 4px 2px;
-        cursor: pointer;
-        transition-duration: 0.4s;
+        padding: 10px 24px;
+        border-radius: 8px;
+        transition: 0.3s;
     }
     .stButton>button:hover {
         background-color: white;
-        color: black;
+        color: #4CAF50;
         border: 2px solid #4CAF50;
     }
 </style>
@@ -38,7 +37,7 @@ st.markdown(page_bg_img, unsafe_allow_html=True)
 # Page title
 st.title('🌿 Malaria Prediction using Machine Learning')
 
-# Input data section with columns
+# Input section
 st.subheader("Enter Health and Environmental Factors")
 col1, col2, col3, col4, col5 = st.columns(5)
 
@@ -69,11 +68,11 @@ with col3:
 # Prediction result
 malaria_diagnosis = ''
 
-# Prediction button with improved styling
+# Prediction button
 if st.button('🔍 Predict Malaria'):
-    malaria_prediction = malaria.predict([[temperature_above_avg, high_rainfall, high_humidity, 
-                                           high_population_density, malaria_outbreak, 
-                                           health_facilities_adequate, vaccination_rate_high, 
+    malaria_prediction = malaria.predict([[temperature_above_avg, high_rainfall, high_humidity,
+                                           high_population_density, malaria_outbreak,
+                                           health_facilities_adequate, vaccination_rate_high,
                                            mosquito_net_coverage_high]])
 
     if malaria_prediction[0] == 1:
@@ -81,5 +80,5 @@ if st.button('🔍 Predict Malaria'):
     else:
         malaria_diagnosis = 'The person is NOT affected with Malaria 😊'
 
-# Display the diagnosis result
+# Display result
 st.success(malaria_diagnosis)
